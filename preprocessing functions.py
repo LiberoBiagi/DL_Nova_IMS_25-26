@@ -54,15 +54,11 @@ def preprocess_v1 (train_df, val_df, test_df, BATCH_SIZE=64):
 
     # define a data augmentation pipeline
     data_augmentation = keras.Sequential([layers.RandomFlip("horizontal"),layers.RandomRotation(0.03),])
-
-    # apply augmentation only to the training dataset
-    train_ds = train_ds.map(lambda img, label: (data_augmentation(img, training=True), label))
-    
+   
     # creating batches of images for more efficient training
     train_ds = train_ds.batch(BATCH_SIZE)
     val_ds = val_ds.batch(BATCH_SIZE)
     test_ds = test_ds.batch(BATCH_SIZE)
 
-    return train_ds, val_ds, test_ds
-
-
+    return train_ds, val_ds, test_ds, data_augmentation
+    
