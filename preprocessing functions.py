@@ -58,7 +58,6 @@ def preprocess_v1 (train_df, val_df, test_df, BATCH_SIZE=64):
     # apply augmentation only to the training dataset
     train_ds = train_ds.map(lambda img, label: (data_augmentation(img, training=True), label))
     
-
     # creating batches of images for more efficient training
     train_ds = train_ds.batch(BATCH_SIZE)
     val_ds = val_ds.batch(BATCH_SIZE)
