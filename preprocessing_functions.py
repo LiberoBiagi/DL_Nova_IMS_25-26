@@ -26,10 +26,13 @@ def preprocess_v1 (train_df, val_df, test_df, BATCH_SIZE=64):
     """Preprocessing version 1:
     - Load images from file paths and convert author names to numeric labels
     - Normalize pixel values to [0, 1]
-    - Randomly augment training images with horizontal flips and small rotations
+    - Shuffle the training dataset for better generalization
     - Create batches of images for more efficient training
+    - Prefetch data to improve performance
+    - Create a data augmentation pipeline for the training set
     
-    It takes the split dataframes as input and returns TensorFlow datasets ready for training, validation, and testing."""
+    It takes the split dataframes as input and returns TensorFlow datasets ready for training, validation, and testing.
+    Also returns a data augmentation pipeline that can be applied to the training dataset during model training."""
     
     # get all unique author names from the training set
     authors = sorted(train_df["author"].unique())
@@ -52,13 +55,22 @@ def preprocess_v1 (train_df, val_df, test_df, BATCH_SIZE=64):
     val_ds = val_ds.map(load_and_normalize)
     test_ds = test_ds.map(load_and_normalize)
 
-    # define a data augmentation pipeline
-    data_augmentation = keras.Sequential([layers.RandomFlip("horizontal"),layers.RandomRotation(0.03),])
-   
+    # shuffle the training dataset (at epoch start) for better generalization
+    train_ds = train_ds.shuffle(buffer_size=1000, reshuffle_each_iteration=True)
+
     # creating batches of images for more efficient training
     train_ds = train_ds.batch(BATCH_SIZE)
     val_ds = val_ds.batch(BATCH_SIZE)
     test_ds = test_ds.batch(BATCH_SIZE)
 
-    return train_ds, val_ds, test_ds, data_augmentation
+    # prefetch data to improve performance by overlapping data preprocessing and model execution
+    train_ds = train_ds.prefetch(buffer_size=tf.data.AUTOTUNE)
+    val_ds = val_ds.prefetch(buffer_size=tf.data.AUTOTUNE)
+    test_ds = test_ds.prefetch(buffer_size=tf.data.AUTOTUNE)
+
+    # define a data augmentation pipeline
+    data_augmentation = keras.Sequential([layers.RandomFlip("horizontal"),layers.RandomRotation(0.03),])
     
+    return train_ds, val_ds, test_ds, data_augmentation
+
+
