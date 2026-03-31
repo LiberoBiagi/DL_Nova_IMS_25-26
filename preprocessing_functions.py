@@ -5,6 +5,8 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+IMG_SIZE = (224, 224)
+
 def load_and_normalize(path, label):
 
     """ Helper function to load an image from disk, decode it, and normalize pixel values to the range [0, 1]. """
