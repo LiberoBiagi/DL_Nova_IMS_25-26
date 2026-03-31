@@ -14,6 +14,8 @@ def load_and_normalize(path, label):
 
     # decode image into RGB
     img = tf.image.decode_image(img, channels=3, expand_animations=False) 
+    img.set_shape([None, None, 3])      
+    img = tf.image.resize(img, IMG_SIZE) #  512x512 → 224x224
 
     # convert pixel values from 0-255 to 0-1
     img = tf.cast(img, tf.float32) / 255.0
