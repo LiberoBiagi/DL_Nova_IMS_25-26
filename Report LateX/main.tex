@@ -1,0 +1,145 @@
+%! BIB program = biber
+\documentclass[12pt,a4paper]{article}
+
+% Pacchetti utili
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csquotes}
+
+\addbibresource{references.bib}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+% Margini
+\geometry{margin=1in}
+
+% Interlinea
+\onehalfspacing
+
+\begin{document}
+
+% Title
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    
+    {\LARGE \textbf{JOMAL PP}}\\[0.5cm]
+    {\large Deep Learning for Art Classification}\\[10cm]
+    
+    \textbf{Authors:} Andreea Roica, Jenny Cubelo, Libero Biagi, Marisa Esteves, Oliver Kain \\
+    \textbf{Student IDs:} 20250361, 20250431, 20250349, 20250348, 20250401 \\
+    \textbf{Course:} Deep Learning \\
+    \textbf{University:} NOVA Information Management School \\
+    \textbf{Date:} \today
+    
+    \vfill
+\end{titlepage}
+
+% ===== INDICE =====
+\tableofcontents
+\newpage
+
+% ===== SEZIONI =====
+\section{Introduction}
+
+The classification of artistic images poses unique challenges compared to conventional image recognition tasks. Paintings often exhibit significant variability in style, composition, and abstraction, even within the same artist class, while distinct classes may share similar visual characteristics. As a result, effective models must capture subtle patterns such as texture, color distribution, and stylistic features that are commonly learned through deep convolutional representations \cite{krizhevsky2012,gatys2016}.
+
+This project addresses the problem of classifying artworks from a subset of the WikiArt dataset using deep learning techniques. The objective is to develop models capable of learning discriminative visual representations that generalize well despite the complexity and variability of the data.
+
+To this end, several deep learning approaches are explored and evaluated, with a focus on understanding how different architectures capture the underlying structure of artistic images. Convolutional neural networks have been shown to be effective at learning hierarchical feature representations from images, while also being applicable to style- and texture-sensitive visual tasks \cite{gatys2016}. The performance of these models is assessed using standard evaluation metrics, providing insight into their effectiveness for this task.
+
+
+\section{Dataset and Data Preparation}
+\subsection{Dataset Description}
+
+The dataset used in this project is a subset of the WikiArt collection, which contains digitized paintings from 23 artists. 
+The task considered is artist classification, where each image is associated with the artist who created the work, forming a multi-class classification problem.
+The distribution of samples is not perfectly balanced across classes, with the number of images per artist ranging from 336 to 1322, for a total of 13,340 images.
+This imbalance introduces additional challenges for model training and evaluation.
+
+
+\subsection{Data Splitting Strategy}
+
+To ensure that the model generalizes across different visual styles of each artist and to address the class imbalance, we adopted a clustering-based splitting strategy within each artist. 
+For each image, we extracted low-level visual features, including a grayscale indicator and statistical descriptors in HSV color space, after resizing images to 64x64 and normalizing pixel values.
+Clustering was performed independently per artist using KMeans, with the number of clusters selected by maximizing the silhouette score. 
+This groups artworks with similar visual characteristics (e.g., color palette or style) within each artist.
+
+Initially, we experimented with a purely random split by artist, but observed imbalanced results. 
+This led to situations where the model was not exposed during training to certain stylistic variations, negatively affecting performance. 
+
+
+The final dataset split was obtained by stratifying on the combined artist–cluster label, using an 80/10/10 ratio for training, validation, and testing. 
+This ensures that each split contains samples from all clusters of every artist, exposing the model to the full range of styles during training.
+The 80/10/10 ratio was chosen to maximize the number of training samples while maintaining sufficiently large and balanced validation and test sets.
+
+Stratification by artist–cluster helps preserve both class distribution and intra-class variability across splits, leading to a more robust and fair evaluation of the classification model.
+
+\subsection{Data Preprocessing}
+\subsubsection{Normalization}
+
+For the purpose of normalization, images were decoded into RGB format and pixel values were scaled from the range [0,255] to [0,1], ensuring consistent input representation.
+The same preprocessing was applied uniformly to the training, validation, and test sets.
+
+\subsubsection{Resizing}
+
+We analyzed the resolution of all images in the dataset by extracting their dimensions. 
+The results showed that all images share a resolution of 512x512 pixels, which is relatively high for efficient model training. 
+Therefore, images were considered for downscaling to a smaller size to reduce computational cost.
+
+\subsection{Data Augmentation}
+
+Techniques used (e.g., rotations, flips, color jitter) and rationale.
+
+\subsection{Batching}
+
+The dataset was processed in batches of 64 samples, as it provides a good balance between memory usage and training performance. 
+Each batch consists of tensors of shape (64, 512, 512, 3) for images and (64,) for labels.
+
+\section{Methodology}
+\subsection{Custom CNN Architecture}
+Explain design choices, layers, activation functions, regularization techniques.
+\subsection{Transfer Learning with Pre-trained Models}
+For each, brief description, rationale for selection.
+\subsubsection{VGG16}
+\subsubsection{ResNet50}
+\subsubsection{EfficientNet}
+\subsubsection{InceptionV1}
+\subsection{Fine-Tuning Strategy}
+Focus on EfficientNet, frozen layers vs trainable layers, learning rates.
+
+\section{Experimental Setup}
+Loss function, optimizer, metrics (F1-score), training epochs, early stopping criteria.
+
+\section{Results and Evaluation}
+\subsection{Quantitative Results}
+F1-score, loss, comparison table.
+\subsection{Model Comparison}
+Discussion of performance differences, potential reasons.
+\subsection{Error Analysis}
+Common misclassifications, patterns.
+
+\section{Discussion}
+Interpretation of results, trade-offs between models, challenges (dataset size, overfitting, etc).
+
+\section{Conclusion}
+Summary of findings, possible improvements, future work.
+
+
+
+
+\printbibliography
+
+\end{document}
+
