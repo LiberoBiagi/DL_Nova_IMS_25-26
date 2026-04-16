@@ -99,7 +99,10 @@ def ResNet50___(input_shape=(224, 224, 3),
 
     inputs_resnet = layers.Input(shape=input_shape)
 
-    x = data_augmentation(inputs_resnet)
+    if data_augmentation is not None:
+        x = data_augmentation(inputs_resnet)
+    else:
+        x = inputs_resnet
     x = layers.Resizing(224, 224)(x)
     x = resnet_preprocess_input(x)
     x = resnet_base(x, training=False)
@@ -127,9 +130,12 @@ def  InceptionV3__(input_shape=(224, 224, 3),
 
     inputs_inceptionv3 = layers.Input(shape=input_shape)
 
-    x = data_augmentation(inputs_inceptionv3)
+    if data_augmentation is not None:
+        x = data_augmentation(inputs_inceptionv3)
+    else:
+        x = inputs_inceptionv3
     x = layers.Resizing(224, 224)(x)
-    x = inception_preprocess_input(x)
+    x = inception_preprocess_input()(x)
     x = inceptionv3_base(x, training=False) 
     x = layers.GlobalAveragePooling2D()(x)
     x = layers.Dense(512, activation='relu')(x)
@@ -156,7 +162,10 @@ def ViT__(input_shape=(224, 224, 3),
 
     inputs_vit = layers.Input(shape=input_shape)
 
-    x = data_augmentation(inputs_vit)
+    if data_augmentation is not None:
+        x = data_augmentation(inputs_vit)
+    else:
+        x = inputs_vit
     x = layers.Resizing(224, 224)(x)
 
     outputs_vit = vit_model(x)    
