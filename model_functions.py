@@ -134,8 +134,8 @@ def  InceptionV3__(input_shape=(224, 224, 3),  #### CHECK SIZE
         x = data_augmentation(inputs_inceptionv3)
     else:
         x = inputs_inceptionv3
-    x = layers.Resizing(224, 224)(x)
-    x = inception_preprocess_input()(x)
+    x = layers.Resizing(299, 299)(x)
+    x = inception_preprocess_input(x)
     x = inceptionv3_base(x, training=False) 
     x = layers.GlobalAveragePooling2D()(x)
     x = layers.Dense(512, activation='relu')(x)
