@@ -116,14 +116,16 @@ def ResNet50___(input_shape=(224, 224, 3),
     return model
 
 
-def  InceptionV3__(input_shape=(224, 224, 3),  #### CHECK SIZE
+def InceptionV3__(input_shape=(299, 299, 3),
                   num_classes=23,
                   data_augmentation=None):
     
     # base model with pre-trained weights on ImageNet
-    inceptionv3_base = InceptionV3(weights='imagenet',
-                                include_top=False, # exclude the fully connected layers at the top of the network
-                                input_shape=input_shape)
+    inceptionv3_base = InceptionV3(
+        weights='imagenet',
+        include_top=False,
+        input_shape=(299, 299, 3)
+    )
 
     for layer in inceptionv3_base.layers:
         layer.trainable = False
@@ -134,8 +136,9 @@ def  InceptionV3__(input_shape=(224, 224, 3),  #### CHECK SIZE
         x = data_augmentation(inputs_inceptionv3)
     else:
         x = inputs_inceptionv3
+
     x = layers.Resizing(299, 299)(x)
-    x = layers.Lambda(lambda img: inception_preprocess_input(img))(x)
+    x = inception_preprocess_input(x)
     x = inceptionv3_base(x, training=False) 
     x = layers.GlobalAveragePooling2D()(x)
     x = layers.Dense(512, activation='relu')(x)
@@ -145,7 +148,6 @@ def  InceptionV3__(input_shape=(224, 224, 3),  #### CHECK SIZE
     model = Model(inputs_inceptionv3, x)
 
     return model
-
 
 def ViT__(input_shape=(224, 224, 3), 
           num_classes=23,
