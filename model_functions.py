@@ -10,7 +10,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import backend as K
 from keras import Model, layers
-from keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Resizing, BatchNormalization, Activation, GlobalAveragePooling2D
+from keras.layers import Input, Normalization, Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Resizing, BatchNormalization, Activation, GlobalAveragePooling2D
 from tensorflow.keras.models import Sequential
 
 # model training and evaluation
@@ -22,18 +22,24 @@ from sklearn.metrics import f1_score, classification_report, confusion_matrix
 from sklearn.utils.class_weight import compute_class_weight
 
 # pre-trained models
-from tensorflow.keras.applications.vgg16 import VGG16
+import keras_hub
 from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.applications.resnet50 import preprocess_input as resnet_preprocess_input
+from tensorflow.keras.applications import InceptionV3
+from tensorflow.keras.applications.inception_v3 import preprocess_input as inception_preprocess_input
 
 #------------------------------------------------------------------------------------------------------------------------------
 #                                                    MODEL BUILDING FUNCTIONS
 #------------------------------------------------------------------------------------------------------------------------------
 
-def Our_Net(input_shape=(224, 224, 3), num_classes=23):
+def Our_Net(input_shape=(224, 224, 3),
+             num_classes=23,
+             data_augmentation=None):
+    
     model = Sequential([
         Input(shape=input_shape),
         Resizing(224, 224),
+        Normalization(),  # normalize pixel values to [0, 1]
         data_augmentation,
 
         # Block 1
@@ -74,39 +80,109 @@ def Our_Net(input_shape=(224, 224, 3), num_classes=23):
         Dense(num_classes, activation='softmax')
     ])
 
-    model.compile(
-        optimizer=Adam(learning_rate=1e-3),
-        loss='sparse_categorical_crossentropy',
-        metrics=['accuracy'],
-    )
     return model
 
 
-def ResNet50(input_shape=(224, 224, 3), num_classes=23):
-    ## Completar
+def ResNet50___(input_shape=(224, 224, 3),
+            num_classes=23,
+            data_augmentation=None):
+
+    # base model with pre-trained weights on ImageNet
+    resnet_base = ResNet50(
+    input_shape=input_shape,
+    include_top=False,
+    weights='imagenet'
+    )
+
+    for layer in resnet_base.layers:
+        layer.trainable = False
+
+    inputs_resnet = layers.Input(shape=input_shape)
+
+    x = data_augmentation(inputs_resnet)
+    x = layers.Resizing(224, 224)(x)
+    x = resnet_preprocess_input(x)
+    x = resnet_base(x, training=False)
+    x = layers.GlobalAveragePooling2D()(x)
+    x = layers.Dense(512, activation='relu')(x)
+    x = layers.Dropout(0.5)(x)
+    x = layers.Dense(num_classes, activation='softmax')(x)
+
+    model = Model(inputs_resnet, x)
+
+    return model
 
 
-def  InceptionV3(input_shape=(224, 224, 3), num_classes=23):
-    ## Completar
+def  InceptionV3__(input_shape=(224, 224, 3),
+                  num_classes=23,
+                  data_augmentation=None):
+    
+    # base model with pre-trained weights on ImageNet
+    inceptionv3_base = InceptionV3(weights='imagenet',
+                                include_top=False, # exclude the fully connected layers at the top of the network
+                                input_shape=(224, 224, 3))
 
-def ViT(input_shape=(224, 224, 3), num_classes=23):
-    ## Completar    
+    for layer in inceptionv3_base.layers:
+        layer.trainable = False
+
+    inputs_inceptionv3 = layers.Input(shape=(224, 224, 3))
+
+    x = data_augmentation(inputs_inceptionv3)
+    x = layers.Resizing(224, 224)(x)
+    x = inception_preprocess_input()(x)
+    x = inceptionv3_base(x, training=False) 
+    x = layers.GlobalAveragePooling2D()(x)
+    x = layers.Dense(512, activation='relu')(x)
+    x = layers.Dropout(0.5)(x)
+    x = layers.Dense(num_classes, activation='softmax')(x)
+
+    model = Model(inputs_inceptionv3, x)
+
+    return model
+
+
+def ViT__(input_shape=(224, 224, 3), 
+        num_classes=23,
+        data_augmentation=None):
+    
+    vit_model = keras_hub.models.ViTImageClassifier.from_preset("vit_base_patch16_224_imagenet",
+                                                            num_classes = num_classes,
+                                                            activation='softmax',
+                                                            pooling = 'gap',
+                                                            dropout=0.3)
+
+    for layer in vit_model.backbone.layers:
+        layer.trainable = False  
+
+    inputs_vit = layers.Input(shape=input_shape)
+
+    x = data_augmentation(inputs_vit)
+    x = layers.Resizing(224, 224)(x)
+
+    outputs_vit = vit_model(x)    
+
+    model = Model(inputs_vit, outputs_vit)
+
+    return model 
 
 #------------------------------------------------------------------------------------------------------------------------------
 #                                                    MODEL EVALUATION FUNCTIONS
 #------------------------------------------------------------------------------------------------------------------------------
 
-def classificattion_report (y_true, y_pred):
+def complete_classificattion_report (y_true, y_pred, model_name):
 
     f1_macro = f1_score(y_true, y_pred, average='macro')
     f1_weighted = f1_score(y_true, y_pred, average='weighted')
 
+    print(f"Model: {model_name}")
     print(f"F1 Macro:    {f1_macro:.4f}")
     print(f"F1 Weighted: {f1_weighted:.4f}")
 
 
-    print("\nClassification Report:")
+    print(f"\nClassification Report {model_name}:")
     print(classification_report(y_true, y_pred))
+
+    return f1_macro, f1_weighted
 
 def accuracy_loss_curves(history_dict, model_name):
      
