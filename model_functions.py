@@ -120,12 +120,12 @@ def  InceptionV3__(input_shape=(224, 224, 3),
     # base model with pre-trained weights on ImageNet
     inceptionv3_base = InceptionV3(weights='imagenet',
                                 include_top=False, # exclude the fully connected layers at the top of the network
-                                input_shape=(224, 224, 3))
+                                input_shape=input_shape)
 
     for layer in inceptionv3_base.layers:
         layer.trainable = False
 
-    inputs_inceptionv3 = layers.Input(shape=(224, 224, 3))
+    inputs_inceptionv3 = layers.Input(shape=input_shape)
 
     x = data_augmentation(inputs_inceptionv3)
     x = layers.Resizing(224, 224)(x)
