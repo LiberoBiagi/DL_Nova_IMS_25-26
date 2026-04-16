@@ -34,7 +34,6 @@ def preprocess_v1 (train_df, val_df, test_df, BATCH_SIZE=64):
 
     """Preprocessing version 1:
     - Load images from file paths and convert author names to numeric labels
-    - Normalize pixel values to [0, 1]
     - Shuffle the training dataset for better generalization
     - Create batches of images for more efficient training
     - Prefetch data to improve performance
