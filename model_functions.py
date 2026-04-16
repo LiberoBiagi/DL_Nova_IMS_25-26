@@ -169,7 +169,7 @@ def ViT__(input_shape=(224, 224, 3),
 #                                                    MODEL EVALUATION FUNCTIONS
 #------------------------------------------------------------------------------------------------------------------------------
 
-def complete_classificattion_report (y_true, y_pred, model_name):
+def complete_classification_report (y_true, y_pred, model_name):
 
     f1_macro = f1_score(y_true, y_pred, average='macro')
     f1_weighted = f1_score(y_true, y_pred, average='weighted')
