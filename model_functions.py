@@ -116,7 +116,7 @@ def ResNet50___(input_shape=(224, 224, 3),
     return model
 
 
-def  InceptionV3__(input_shape=(224, 224, 3),
+def  InceptionV3__(input_shape=(224, 224, 3),  #### CHECK SIZE
                   num_classes=23,
                   data_augmentation=None):
     
@@ -162,8 +162,6 @@ def ViT__(input_shape=(224, 224, 3),
     for layer in vit_model.backbone.layers:
         layer.trainable = False  
 
-    vit_model.preprocessor = None
-
     inputs_vit = layers.Input(shape=input_shape)
     
     x = inputs_vit
@@ -171,12 +169,6 @@ def ViT__(input_shape=(224, 224, 3),
         x = data_augmentation(x)
     
     x = layers.Resizing(224, 224)(x)
-
-    x = layers.Rescaling(1./255)(x)
-    mean = [0.485, 0.456, 0.406]
-    std  = [0.229, 0.224, 0.225]
-    x = layers.Normalization(mean=mean, variance=[s**2 for s in std])(x)
-    
     outputs_vit = vit_model(x)    
     model = Model(inputs_vit, outputs_vit)
     return model
