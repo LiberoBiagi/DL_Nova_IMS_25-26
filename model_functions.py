@@ -148,31 +148,38 @@ def  InceptionV3__(input_shape=(224, 224, 3),
 
 
 def ViT__(input_shape=(224, 224, 3), 
-        num_classes=23,
-        data_augmentation=None):
+          num_classes=23,
+          data_augmentation=None):
     
-    vit_model = keras_hub.models.ViTImageClassifier.from_preset("vit_base_patch16_224_imagenet",
-                                                            num_classes = num_classes,
-                                                            activation='softmax',
-                                                            pooling = 'gap',
-                                                            dropout=0.3)
-
+    vit_model = keras_hub.models.ViTImageClassifier.from_preset(
+        "vit_base_patch16_224_imagenet",
+        num_classes=num_classes,
+        activation='softmax',
+        pooling='gap',
+        dropout=0.3
+    )
+    
     for layer in vit_model.backbone.layers:
         layer.trainable = False  
 
-    inputs_vit = layers.Input(shape=input_shape)
+    vit_model.preprocessor = None
 
+    inputs_vit = layers.Input(shape=input_shape)
+    
+    x = inputs_vit
     if data_augmentation is not None:
-        x = data_augmentation(inputs_vit)
-    else:
-        x = inputs_vit
+        x = data_augmentation(x)
+    
     x = layers.Resizing(224, 224)(x)
 
+    x = layers.Rescaling(1./255)(x)
+    mean = [0.485, 0.456, 0.406]
+    std  = [0.229, 0.224, 0.225]
+    x = layers.Normalization(mean=mean, variance=[s**2 for s in std])(x)
+    
     outputs_vit = vit_model(x)    
-
     model = Model(inputs_vit, outputs_vit)
-
-    return model 
+    return model
 
 #------------------------------------------------------------------------------------------------------------------------------
 #                                                    MODEL EVALUATION FUNCTIONS
