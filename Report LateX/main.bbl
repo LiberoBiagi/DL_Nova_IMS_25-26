@@ -1,0 +1,108 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{cetinic2018finetuning}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a8b897fee3b12763edb1aa5f86bdcc1e}{%
+           family={Cetinic},
+           familyi={C\bibinitperiod},
+           given={Eva},
+           giveni={E\bibinitperiod}}}%
+        {{hash=3eb65930a29a5367030dd160ea556ead}{%
+           family={Lipic},
+           familyi={L\bibinitperiod},
+           given={Tomislav},
+           giveni={T\bibinitperiod}}}%
+        {{hash=ea8983d0445fcb9dec92ce253ee5ed22}{%
+           family={Grgic},
+           familyi={G\bibinitperiod},
+           given={Sonja},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{fullhash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{fullhashraw}{1da112db3237514e7e11ab22b0484f17}
+      \strng{bibnamehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authorbibnamehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authornamehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authorfullhash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authorfullhashraw}{1da112db3237514e7e11ab22b0484f17}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Expert Systems with Applications}
+      \field{title}{Fine-tuning Convolutional Neural Networks for Fine Art Classification}
+      \field{volume}{114}
+      \field{year}{2018}
+      \field{pages}{107\bibrangedash 118}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/j.eswa.2018.07.026
+      \endverb
+    \endentry
+    \entry{li2024artimage}{incollection}{}{}
+      \name{author}{1}{}{%
+        {{hash=8da3308712a917f8ddd6491d0a9814e8}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Hua},
+           giveni={H\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=ce3364dec02dc579b30951a3dd3c5790}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOS Press}%
+      }
+      \strng{namehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{fullhash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{fullhashraw}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{bibnamehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authorbibnamehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authornamehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authorfullhash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authorfullhashraw}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{editorbibnamehash}{ce3364dec02dc579b30951a3dd3c5790}
+      \strng{editornamehash}{ce3364dec02dc579b30951a3dd3c5790}
+      \strng{editorfullhash}{ce3364dec02dc579b30951a3dd3c5790}
+      \strng{editorfullhashraw}{ce3364dec02dc579b30951a3dd3c5790}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Intelligent Computing Technology and Automation}
+      \field{title}{Art Image Identification Based on Feature Recognition and BP Neural Network}
+      \field{year}{2024}
+      \field{pages}{1166\bibrangedash 1173}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.3233/ATDE231300
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
