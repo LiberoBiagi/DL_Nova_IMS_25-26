@@ -1,9 +1,18 @@
+#------------------------------------------------------------------------------------------------------------------------------
+#                                                            IMPORTS
+#------------------------------------------------------------------------------------------------------------------------------
+
 import numpy as np
 import tensorflow as tf
 import keras
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report
+
+
+#------------------------------------------------------------------------------------------------------------------------------
+#                                                            CLASS NAMES
+#------------------------------------------------------------------------------------------------------------------------------
 
 CLASS_NAMES = [
     "Albrecht_Durer",
@@ -31,14 +40,21 @@ CLASS_NAMES = [
     "Vincent_van_Gogh",
 ]
 
+#------------------------------------------------------------------------------------------------------------------------------
+#                                                      GRAD-CAM FUNCTIONS
+#------------------------------------------------------------------------------------------------------------------------------
 
 def _load_image(img_path):
+
+    """Helper function to load an image from disk and convert it to a tensor suitable for Grad-CAM."""
+
     img = keras.utils.load_img(img_path, target_size=(224, 224))
     arr = keras.utils.img_to_array(img)  
     return tf.cast(tf.expand_dims(arr, 0), tf.float32)
 
 
 def _make_gradcam_heatmap(img_tensor, model):
+
     """
     Grad-CAM for the final fine-tuned ResNet50 model.
 
@@ -46,10 +62,10 @@ def _make_gradcam_heatmap(img_tensor, model):
         input_layer_1 -> sequential -> resizing -> get_item* -> stack -> add
         -> resnet50 -> global_average_pooling -> dense* -> dense_5 (output)
 
-    We build a two-output Keras model using the symbolic tensors already
-    in the graph: model.input -> [conv5_block3_out, model.output].
+    We build a two-output Keras model using the symbolic tensors already in the graph: model.input -> [conv5_block3_out, model.output].
     This is the only approach that keeps the gradient path intact.
     """
+
     # locate resnet50 sublayer and its conv5_block3_out layer
     resnet_sub = None
     for layer in model.layers:
@@ -107,6 +123,7 @@ def _make_gradcam_heatmap(img_tensor, model):
 
 
 def _overlay_heatmap(img_path, heatmap, alpha=0.4, colormap="jet"):
+
     """
     Superimpose a coloured Grad-CAM heatmap over the original image.
 
@@ -114,10 +131,11 @@ def _overlay_heatmap(img_path, heatmap, alpha=0.4, colormap="jet"):
     ----------
     alpha     : blending weight for the heatmap (higher = more vivid).
     colormap  : any matplotlib colormap name.
-                'jet'      – classic blue→red (default).
-                'inferno'  – dark purple→yellow (more intense/dramatic).
-                'turbo'    – perceptually-uniform, very vivid.
+                'jet'      - classic blue→red (default).
+                'inferno'  - dark purple→yellow (more intense/dramatic).
+                'turbo'    - perceptually-uniform, very vivid.
     """
+
     img = keras.utils.img_to_array(keras.utils.load_img(img_path))
 
     heatmap_uint8 = np.uint8(255 * heatmap)
@@ -132,6 +150,7 @@ def _overlay_heatmap(img_path, heatmap, alpha=0.4, colormap="jet"):
 
 
 def make_gradcam(img_path, model, model_type=None, alpha=0.4, colormap="jet"):
+
     """
     Run Grad-CAM on a single image and display original + heatmap side-by-side.
 
@@ -143,6 +162,7 @@ def make_gradcam(img_path, model, model_type=None, alpha=0.4, colormap="jet"):
     alpha     : heatmap blending strength.
     colormap  : matplotlib colormap for the heatmap overlay.
     """
+
     img_tensor = _load_image(img_path)
     heatmap, pred_idx, probs = _make_gradcam_heatmap(img_tensor, model)
     overlay = _overlay_heatmap(img_path, heatmap, alpha=alpha, colormap=colormap)
@@ -178,6 +198,7 @@ def compare_best_worst_classes(
     colormap_worst="jet",    
     n_images=3,
 ):
+    
     """
     Find the best and worst predicted classes (by F1-score), then show
     Grad-CAM overlays for each — two separate figures, one per class.
@@ -190,12 +211,13 @@ def compare_best_worst_classes(
     y_true / y_pred   : integer label arrays from the test set.
     test_df           : DataFrame with columns 'label' and 'image_path'.
     model             : the final Keras model.
-    alpha_best        : heatmap intensity for the best-class figure (0–1).
-    alpha_worst       : heatmap intensity for the worst-class figure (0–1).
+    alpha_best        : heatmap intensity for the best-class figure (0-1).
+    alpha_worst       : heatmap intensity for the worst-class figure (0-1).
     colormap_best     : matplotlib colormap for the best-class heatmaps.
     colormap_worst    : matplotlib colormap for the worst-class heatmaps.
     n_images          : number of sample images to show per class.
     """
+
     report = classification_report(y_true, y_pred, output_dict=True)
     f1_per_class = {int(k): v["f1-score"] for k, v in report.items() if k.isdigit()}
 
