@@ -13,6 +13,7 @@
 \usepackage{csquotes}
 \usepackage{placeins}
 
+
 \addbibresource{references.bib}
 
 \hypersetup{
@@ -132,7 +133,7 @@ A custom classification head was added on top to adapt each model to the artist 
 
 ResNet50 is a deep convolutional neural network architecture composed of 50 layers, based on the concept of residual learning. 
 Its key feature is the use of residual connections, which allow the network to learn residual mappings instead of direct transformations. 
-These connections facilitate the learning of both low-level and high-level features, improving the model’s capacity to generalize across varying artistic styles and making ResNet50 a suitable choice for our problem.
+These connections facilitate the learning of both low-level and high-level features, improving the model’s capacity to generalize across varying artistic styles and making ResNet50 a suitable choice for our problem \cite{he2016deep}.
 
 
 \subsubsection{InceptionV3}
@@ -141,14 +142,14 @@ InceptionV3 is a convolutional neural network architecture designed to capture v
 Its main idea is the use of Inception modules, where multiple operations (e.g., $1 \times 1$, $3 \times 3$, $5 \times 5$ convolutions and pooling) are applied in parallel to the same input and their outputs are concatenated. 
 This allows the model to extract different types of features simultaneously.
 This architecture is particularly useful when the size of relevant patterns is unknown, as it can capture both fine details and more global structures. 
-For our task, this is beneficial since artistic styles can vary in both local features and overall composition.
+For our task, this is beneficial since artistic styles can vary in both local features and overall composition\cite{szegedy2016rethinking}.
 
 
 \subsubsection{Vision Transformer (ViT)}
 
 ViT is an architecture that applies transformer models to image classification. 
 Instead of using convolutions, the image is divided into fixed-size patches, which are treated as a sequence and processed using self-attention mechanisms, allowing the model to capture global relationships between different parts of the image.
-This is useful for artist classification, where overall composition and spatial relationships can be important.
+This is useful for artist classification, where overall composition and spatial relationships can be important\cite{dosovitskiy2020image}.
 
 
 \section{Experimental Setup}
