@@ -36,6 +36,8 @@ def Our_Net(input_shape=(224, 224, 3),
              num_classes=23,
              data_augmentation=None):
     
+    """Builds a custom CNN model for image classification."""
+    
     model = Sequential([
         Input(shape=input_shape),
         Resizing(224, 224),
@@ -86,6 +88,8 @@ def Our_Net(input_shape=(224, 224, 3),
 def ResNet50___(input_shape=(224, 224, 3),
             num_classes=23,
             data_augmentation=None):
+    
+    """Builds a ResNet50 model for image classification using pre-trained weights on ImageNet."""
 
     # base model with pre-trained weights on ImageNet
     resnet_base = ResNet50(
@@ -120,6 +124,8 @@ def InceptionV3__(input_shape=(299, 299, 3),
                   num_classes=23,
                   data_augmentation=None):
     
+    """Builds an InceptionV3 model for image classification using pre-trained weights on ImageNet."""
+    
     # base model with pre-trained weights on ImageNet
     inceptionv3_base = InceptionV3(
         weights='imagenet',
@@ -153,6 +159,8 @@ def ViT__(input_shape=(224, 224, 3),
           num_classes=23,
           data_augmentation=None):
     
+    """Builds a Vision Transformer (ViT) model for image classification using the keras_hub library."""
+    
     vit_model = keras_hub.models.ViTImageClassifier.from_preset(
         "vit_base_patch16_224_imagenet",
         num_classes=num_classes,
@@ -181,6 +189,8 @@ def ViT__(input_shape=(224, 224, 3),
 
 def complete_classification_report (y_true, y_pred, model_name):
 
+    """Helper function to compute and print the F1 scores and the classification report for a given model's predictions."""
+
     f1_macro = f1_score(y_true, y_pred, average='macro')
     f1_weighted = f1_score(y_true, y_pred, average='weighted')
 
@@ -195,6 +205,8 @@ def complete_classification_report (y_true, y_pred, model_name):
     return f1_macro, f1_weighted
 
 def accuracy_loss_curves(history_dict, model_name):
+
+    """Helper function to plot the training and validation accuracy and loss curves for a given model's training history."""
      
     # get training and validation accuracy and loss from history
     loss_values = history_dict['loss']
