@@ -1,0 +1,266 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{cetinic2018finetuning}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a8b897fee3b12763edb1aa5f86bdcc1e}{%
+           family={Cetinic},
+           familyi={C\bibinitperiod},
+           given={Eva},
+           giveni={E\bibinitperiod}}}%
+        {{hash=3eb65930a29a5367030dd160ea556ead}{%
+           family={Lipic},
+           familyi={L\bibinitperiod},
+           given={Tomislav},
+           giveni={T\bibinitperiod}}}%
+        {{hash=ea8983d0445fcb9dec92ce253ee5ed22}{%
+           family={Grgic},
+           familyi={G\bibinitperiod},
+           given={Sonja},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{fullhash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{fullhashraw}{1da112db3237514e7e11ab22b0484f17}
+      \strng{bibnamehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authorbibnamehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authornamehash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authorfullhash}{1da112db3237514e7e11ab22b0484f17}
+      \strng{authorfullhashraw}{1da112db3237514e7e11ab22b0484f17}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Expert Systems with Applications}
+      \field{title}{Fine-tuning Convolutional Neural Networks for Fine Art Classification}
+      \field{volume}{114}
+      \field{year}{2018}
+      \field{pages}{107\bibrangedash 118}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/j.eswa.2018.07.026
+      \endverb
+    \endentry
+    \entry{dosovitskiy2020image}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
+           family={Dosovitskiy},
+           familyi={D\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=836254958eac09b30d45dd67a75ce4fa}{%
+           family={Beyer},
+           familyi={B\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=6807e3c00242c6bf6a3179905040471b}{%
+           family={Kolesnikov},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b398fca6879fde89a032b8e7de2f26b5}{%
+           family={Weissenborn},
+           familyi={W\bibinitperiod},
+           given={Dirk},
+           giveni={D\bibinitperiod}}}%
+        {{hash=00b950307c7d096765bb6df00c7c5c3a}{%
+           family={Zhai},
+           familyi={Z\bibinitperiod},
+           given={Xiaohua},
+           giveni={X\bibinitperiod}}}%
+        {{hash=1a47640139e63b9b5969c969dfe95def}{%
+           family={Unterthiner},
+           familyi={U\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=965baf6fa5686a42b1564330c5e11f2f}{%
+           family={Dehghani},
+           familyi={D\bibinitperiod},
+           given={Mostafa},
+           giveni={M\bibinitperiod}}}%
+        {{hash=06829adce8713f0ace444279dcd7328f}{%
+           family={Minderer},
+           familyi={M\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c95269b4a2e23e1e526be521c7ec6ad4}{%
+           family={Heigold},
+           familyi={H\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=450963f966620925cb8fecd32f7a6ee1}{%
+           family={Gelly},
+           familyi={G\bibinitperiod},
+           given={Sylvain},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{fullhash}{e2f7b82b6bcaba0b27eef166b225c54a}
+      \strng{fullhashraw}{e2f7b82b6bcaba0b27eef166b225c54a}
+      \strng{bibnamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authorbibnamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authornamehash}{d96316bc7578db680aba71d4226354c8}
+      \strng{authorfullhash}{e2f7b82b6bcaba0b27eef166b225c54a}
+      \strng{authorfullhashraw}{e2f7b82b6bcaba0b27eef166b225c54a}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2010.11929}
+      \field{title}{An image is worth 16x16 words: Transformers for image recognition at scale}
+      \field{year}{2020}
+    \endentry
+    \entry{he2016deep}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5e72bc22dbcf0984c6d113d280e36990}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Xiangyu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=bb295293acacd54387339079ebbe4ead}{%
+           family={Ren},
+           familyi={R\bibinitperiod},
+           given={Shaoqing},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f85751488058842b5777c7b4074077b5}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{fullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \strng{fullhashraw}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \strng{bibnamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{authorbibnamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{authornamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{authorfullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \strng{authorfullhashraw}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the IEEE conference on computer vision and pattern recognition}
+      \field{title}{Deep residual learning for image recognition}
+      \field{year}{2016}
+      \field{pages}{770\bibrangedash 778}
+      \range{pages}{9}
+    \endentry
+    \entry{li2024artimage}{incollection}{}{}
+      \name{author}{1}{}{%
+        {{hash=8da3308712a917f8ddd6491d0a9814e8}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Hua},
+           giveni={H\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=ce3364dec02dc579b30951a3dd3c5790}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOS Press}%
+      }
+      \strng{namehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{fullhash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{fullhashraw}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{bibnamehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authorbibnamehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authornamehash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authorfullhash}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{authorfullhashraw}{8da3308712a917f8ddd6491d0a9814e8}
+      \strng{editorbibnamehash}{ce3364dec02dc579b30951a3dd3c5790}
+      \strng{editornamehash}{ce3364dec02dc579b30951a3dd3c5790}
+      \strng{editorfullhash}{ce3364dec02dc579b30951a3dd3c5790}
+      \strng{editorfullhashraw}{ce3364dec02dc579b30951a3dd3c5790}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Intelligent Computing Technology and Automation}
+      \field{title}{Art Image Identification Based on Feature Recognition and BP Neural Network}
+      \field{year}{2024}
+      \field{pages}{1166\bibrangedash 1173}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.3233/ATDE231300
+      \endverb
+    \endentry
+    \entry{szegedy2016rethinking}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=ed568d9c3bb059e6bf22899fbf170f86}{%
+           family={Szegedy},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=8051922e7bd286f884bfbd1023ef62f5}{%
+           family={Vanhoucke},
+           familyi={V\bibinitperiod},
+           given={Vincent},
+           giveni={V\bibinitperiod}}}%
+        {{hash=5543e82359e26b035efc009cb3efff9d}{%
+           family={Ioffe},
+           familyi={I\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9b81f43a31f185cea38a7a03620764eb}{%
+           family={Shlens},
+           familyi={S\bibinitperiod},
+           given={Jon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5f1430f41772f4a524875e509005837c}{%
+           family={Wojna},
+           familyi={W\bibinitperiod},
+           given={Zbigniew},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{80f8e6bfc3aff3e75b2807a6f6962740}
+      \strng{fullhash}{c417fe1f0815ac3cb9624bfc45d0cc3b}
+      \strng{fullhashraw}{c417fe1f0815ac3cb9624bfc45d0cc3b}
+      \strng{bibnamehash}{80f8e6bfc3aff3e75b2807a6f6962740}
+      \strng{authorbibnamehash}{80f8e6bfc3aff3e75b2807a6f6962740}
+      \strng{authornamehash}{80f8e6bfc3aff3e75b2807a6f6962740}
+      \strng{authorfullhash}{c417fe1f0815ac3cb9624bfc45d0cc3b}
+      \strng{authorfullhashraw}{c417fe1f0815ac3cb9624bfc45d0cc3b}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the IEEE conference on computer vision and pattern recognition}
+      \field{title}{Rethinking the inception architecture for computer vision}
+      \field{year}{2016}
+      \field{pages}{2818\bibrangedash 2826}
+      \range{pages}{9}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
